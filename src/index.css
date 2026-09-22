@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.1);
+  --accent-border: rgba(170, 59, 255, 0.5);
+  --social-bg: rgba(244, 243, 236, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+button {
+  min-height: 33px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+
+html,
+body,
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.floating-label>div {
+  background-color: #000;
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.r3f {
+  touch-action: none;
+}
+
+.html-frame iframe {
+  border: none;
+  width: 1366px;
+  height: 900px;
+  border-radius: 8px;
+  background: #000000;
+
+}
+
+.htmlScreen iframe {
+  width: 1024px;
+  height: 670px;
+}
+
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 99999;
+  transition: 150ms;
+
+  &.menu-active {
+    left: 200px;
+  }
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 200px;
+  height: 100%;
+  overflow: auto;
+  color: #000;
+  background-color: #666;
+  z-index: 1;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  a {
+    display: inline-block;
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 150ms;
+    
+
+    &:hover {
+      background-color: #464646;
+    }
+  }
+}
+
+.nav-btn {
+  position: absolute;
+  left: 0px;
+  background-color: #666;
+  border-radius: 0px;
+  border: none;
+  padding: 15px;
+  opacity: 0.4;
+}
+
+/**
+ * Interface
+ */
+.interface {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/**
+ * Time
+ */
+.time {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 100%;
+  color: #ffffff;
+  font-size: 6vh;
+  background: #00000033;
+  text-align: center;
+  line-height: normal;
+}
+
+/**
+ * Restart
+ */
+.restart {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 100%;
+  color: #ffffff;
+  font-size: 80px;
+  background: #00000033;
+  pointer-events: auto;
+  cursor: pointer;
+  line-height: normal;
+}
+
+/**
+ * Controls
+ */
+.controls {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+}
+
+.controls .raw {
+  display: flex;
+  justify-content: center;
+}
+
+.controls .key {
+  width: 40px;
+  height: 40px;
+  margin: 4px;
+  border: 2px solid #ffffff;
+  background: #ffffff44;
+}
+
+.controls .key.large {
+  width: 144px;
+}
+
+.controls .key.active {
+  background: #ffffff99;
+}
