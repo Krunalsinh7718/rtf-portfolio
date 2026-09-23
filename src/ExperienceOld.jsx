@@ -4,25 +4,22 @@ import Laptop1 from "./Laptop1";
 import { useControls } from "leva";
 import BgElements from "./BgElements";
 import { useRef } from "react";
-import { EffectComposer, ToneMapping } from '@react-three/postprocessing'
-import { ToneMappingMode } from 'postprocessing'
-import { HalfFloatType } from "three";
 
 
 import Logos from "./Logos";
 
 
 export default function Experience() {
-    const { backgroundColor } = useControls({
-        backgroundColor: {
+    const {backgroundColor} = useControls({
+        backgroundColor : {
             value: '#4f3493'
         }
     })
 
-
+ 
 
     return <>
-
+        
         <color args={[backgroundColor]} attach="background" />
         <ambientLight intensity={1.5} />
         <Environment
@@ -34,14 +31,12 @@ export default function Experience() {
                 '/images/environments/2/pz.jpg',
                 '/images/environments/2/nz.jpg',
             ]} />
-        <Laptop />
-        <Logos />
-        <BgElements />
-        <EffectComposer
-         frameBufferType={HalfFloatType}
-        >
-            <ToneMapping/>
-        </EffectComposer>
+            <Laptop />
+            <BgElements />
+            <Logos />
+         
+       
+        
     </>;
 }
 

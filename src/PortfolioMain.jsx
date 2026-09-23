@@ -1,8 +1,10 @@
 import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
+import { Leva } from "leva";
 
 export default function PortfolioMain() {
     return <>
+    <Leva hidden />
     <Canvas 
     className="r3f"
     camera={{

@@ -132,8 +132,6 @@ export default function Laptop() {
                     rotation={[- 0.1, Math.PI, 0]}
                     position={[0, 0.55, - 1.15]}
                 />
-            </Float>
-        </PresentationControls>
                 <Text
                     font="/fonts/bangers-v20-latin-regular.woff"
                     fontSize={0.8}
@@ -147,8 +145,10 @@ export default function Laptop() {
                 >KRUNALSINH VAGHELA
                     <meshBasicMaterial toneMapped={false} />
                 </Text>
+            </Float>
+        </PresentationControls>
         <ContactShadows
-            position-y={-1.4}
+            position-y={- 1.4}
             opacity={0.4}
             scale={5}
             blur={5}
