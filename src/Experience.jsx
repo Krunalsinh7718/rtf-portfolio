@@ -4,12 +4,14 @@ import Laptop1 from "./Laptop1";
 import { useControls } from "leva";
 import BgElements from "./BgElements";
 import { useRef } from "react";
-import { EffectComposer, ToneMapping } from '@react-three/postprocessing'
+import { EffectComposer, ToneMapping, Bloom } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
 import { HalfFloatType } from "three";
+import { BlendFunction, Effect } from "postprocessing";
 
 
 import Logos from "./Logos";
+import CornerPattern from "./CornerPattern";
 
 
 export default function Experience() {
@@ -19,6 +21,66 @@ export default function Experience() {
         }
     })
 
+    const patternRef = useRef();
+
+    const cornerPatternProps = useControls('Corner Pattern', {
+        frequency: {
+            value: 10,
+            min: 0,
+            max: 20,
+            step: 0.01
+        },
+        amplitude: {
+            value: 0.08,
+            min: 0.01,
+            max: 0.5,
+            step: 0.001
+        },
+        gridSize: {
+            value: 68,
+            min: 40,
+            max: 150,
+            step: 1
+        },
+        blendFunction: {
+            value: BlendFunction.AVERAGE,
+            options: BlendFunction
+        },
+        color1: {
+            value: '#8701fa', 
+            render: (value) => value,
+            color: { rgb: true }
+        },
+        color2: {
+            value: '#b75ae9', 
+            render: (value) => value,
+            color: { rgb: true }
+        },
+        dotRadius: {
+            value: 0.21,
+            min: 0.1,
+            max: 0.9,
+            step: 0.01
+        },
+    })
+
+    const {bloomIntensity, luminanceThreshold} = useControls("Glow",{
+            bloomIntensity : {
+                value : 1.9,
+                min: 0,
+                max: 5,
+                step: 0.1
+            },
+            luminanceThreshold : {
+                value : 0.4,
+                min: 0,
+                max: 5,
+                step: 0.1
+            },
+        })
+
+    console.log(cornerPatternProps);
+    
 
 
     return <>
@@ -37,10 +99,14 @@ export default function Experience() {
         <Laptop />
         <Logos />
         <BgElements />
-        <EffectComposer
-         frameBufferType={HalfFloatType}
-        >
-            <ToneMapping/>
+        <EffectComposer>
+            <ToneMapping mode={ToneMappingMode.LINEAR} />
+            <CornerPattern ref={patternRef} {...cornerPatternProps} />
+             <Bloom 
+                luminanceThreshold={ bloomIntensity } 
+                mipmapBlur 
+                intensity={ luminanceThreshold }
+            />
         </EffectComposer>
     </>;
 }

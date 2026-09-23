@@ -138,6 +138,8 @@ export default function BgElements() {
                 fragmentShader={gridFragmentShader}
                 uniforms={uniforms}
                 transparent={true}
+                  depthTest={true}
+                depthWrite={false}
                 toneMapped={false}
             />
         </mesh>

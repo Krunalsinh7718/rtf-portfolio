@@ -63,6 +63,8 @@ export default function Laptop() {
 
     })
 
+     
+
     useEffect(() => {
         const action = animations.actions[animations.names[0]]
         action.setLoop(THREE.LoopOnce)
@@ -75,7 +77,7 @@ export default function Laptop() {
 
     useEffect(() => {
         setTimeout(function () {
-            
+
             gsap.to(
                 { value: 0 },
                 {
@@ -91,6 +93,7 @@ export default function Laptop() {
 
 
     return <>
+
         <PresentationControls
             global
             rotation={[0.13, 0.1, 0]}
@@ -132,8 +135,6 @@ export default function Laptop() {
                     rotation={[- 0.1, Math.PI, 0]}
                     position={[0, 0.55, - 1.15]}
                 />
-            </Float>
-        </PresentationControls>
                 <Text
                     font="/fonts/bangers-v20-latin-regular.woff"
                     fontSize={0.8}
@@ -147,15 +148,19 @@ export default function Laptop() {
                 >KRUNALSINH VAGHELA
                     <meshBasicMaterial toneMapped={false} />
                 </Text>
+            </Float>
+        </PresentationControls>
+
         <ContactShadows
             position-y={-1.4}
             opacity={0.4}
             scale={5}
             blur={5}
             depthWrite={false}
+            resolution={256}
             renderOrder={1}
-            // frames={1}
-        />
+            frames={1}
 
+        />
     </>
 }
