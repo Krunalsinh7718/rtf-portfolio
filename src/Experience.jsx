@@ -17,13 +17,23 @@ import CornerPattern from "./CornerPattern";
 export default function Experience() {
     const { backgroundColor } = useControls({
         backgroundColor: {
-            value: '#4f3493'
+            value: '#3a1d83'
         }
     })
 
     const patternRef = useRef();
 
+    const {toneMappingMode} = useControls('Tone Mapping', {
+        toneMappingMode : {
+            value: ToneMappingMode.LINEAR,
+            options: ToneMappingMode
+        }
+    })
+
     const cornerPatternProps = useControls('Corner Pattern', {
+        patternEnable:{
+            value: true
+        },
         frequency: {
             value: 10.19,
             min: 0,
@@ -47,12 +57,12 @@ export default function Experience() {
             options: BlendFunction
         },
         color1: {
-            value: '#8701fa', 
+            value: '#8701fa',
             render: (value) => value,
             color: { rgb: true }
         },
         color2: {
-            value: '#b75ae9', 
+            value: '#b75ae9',
             render: (value) => value,
             color: { rgb: true }
         },
@@ -64,23 +74,24 @@ export default function Experience() {
         },
     })
 
-    const {bloomIntensity, luminanceThreshold} = useControls("Glow",{
-            bloomIntensity : {
-                value : 1.9,
-                min: 0,
-                max: 5,
-                step: 0.1
-            },
-            luminanceThreshold : {
-                value : 0.4,
-                min: 0,
-                max: 5,
-                step: 0.1
-            },
-        })
+    const { bloomIntensity, luminanceThreshold, bloomEnable } = useControls("Glow", {
+        bloomEnable: {
+            value: true
+        },
+        bloomIntensity: {
+            value: 1.9,
+            min: 0,
+            max: 5,
+            step: 0.1
+        },
+        luminanceThreshold: {
+            value: 0.4,
+            min: 0,
+            max: 5,
+            step: 0.1
+        },
+    })
 
-    console.log(cornerPatternProps);
-    
 
 
     return <>
@@ -100,13 +111,19 @@ export default function Experience() {
         <Logos />
         <BgElements />
         <EffectComposer resolutionScale={0.75}>
-            {/* <ToneMapping mode={ToneMappingMode.LINEAR} /> */}
-            {/* <CornerPattern ref={patternRef} {...cornerPatternProps} /> */}
-             {/* <Bloom 
-                luminanceThreshold={ bloomIntensity } 
-                mipmapBlur 
-                intensity={ luminanceThreshold }
-            /> */}
+            <ToneMapping mode={toneMappingMode} />
+            {
+                cornerPatternProps.patternEnable && 
+                <CornerPattern ref={patternRef} {...cornerPatternProps} />
+            }
+            {bloomEnable &&
+                <Bloom
+
+                    luminanceThreshold={bloomIntensity}
+                    mipmapBlur
+                    intensity={luminanceThreshold}
+                />
+            }
         </EffectComposer>
     </>;
 }
