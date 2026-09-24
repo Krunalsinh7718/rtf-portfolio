@@ -25,19 +25,19 @@ export default function Experience() {
 
     const cornerPatternProps = useControls('Corner Pattern', {
         frequency: {
-            value: 10,
+            value: 10.19,
             min: 0,
             max: 20,
             step: 0.01
         },
         amplitude: {
-            value: 0.08,
+            value: 0.14,
             min: 0.01,
             max: 0.5,
             step: 0.001
         },
         gridSize: {
-            value: 68,
+            value: 69,
             min: 40,
             max: 150,
             step: 1
@@ -57,9 +57,9 @@ export default function Experience() {
             color: { rgb: true }
         },
         dotRadius: {
-            value: 0.21,
+            value: 0.28,
             min: 0.1,
-            max: 0.9,
+            max: 0.4,
             step: 0.01
         },
     })
@@ -99,14 +99,14 @@ export default function Experience() {
         <Laptop />
         <Logos />
         <BgElements />
-        <EffectComposer>
-            <ToneMapping mode={ToneMappingMode.LINEAR} />
-            <CornerPattern ref={patternRef} {...cornerPatternProps} />
-             <Bloom 
+        <EffectComposer resolutionScale={0.75}>
+            {/* <ToneMapping mode={ToneMappingMode.LINEAR} /> */}
+            {/* <CornerPattern ref={patternRef} {...cornerPatternProps} /> */}
+             {/* <Bloom 
                 luminanceThreshold={ bloomIntensity } 
                 mipmapBlur 
                 intensity={ luminanceThreshold }
-            />
+            /> */}
         </EffectComposer>
     </>;
 }

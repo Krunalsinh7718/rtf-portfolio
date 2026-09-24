@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import { BlendFunction, Effect } from "postprocessing";
 import { Uniform } from "three";
-import perlinNoice from "./shaders-includes/perlinnoise3d.glsl"
 
 const fragmentShader = /* glsl */`
     uniform float frequency;
@@ -13,7 +12,6 @@ const fragmentShader = /* glsl */`
     uniform vec3 color2;
     uniform vec2 uResolution;
 
-    ${perlinNoice}
 
      void mainImage(const in vec4 inputColor, const in vec2 uv, out vec4 outputColor){   
         
@@ -39,36 +37,35 @@ const fragmentShader = /* glsl */`
 
         // float radius = 0.21;
 
-        float dot = 1.0 - step(dotRadius - (strenth * 0.2), d);
-        // vec3 dotColor1 = vec3(1.0, 0.9, 0.2);
-        // vec3 dotColor2 = vec3(1.0, 0.0, 0.0);
+        float dot = 1.0 - step(dotRadius - (strenth * 0.5), d);
         vec3 dotColorMix = mix(color1, color2, strenth);
         vec3 dotColorMixFinal = dotColorMix * dot;
 
-        vec4 patternColor1 = vec4(dotColorMixFinal  , 1.0);
-
         //3) color mix between input and pattern
         // vec4 color = mix(patternColor1, inputColor,  patternColor.b );
-        vec4 color = inputColor + patternColor1;
+        
 
-        outputColor = color;
+        outputColor =  vec4(
+            inputColor.rgb + dotColorMixFinal,
+            inputColor.a
+        );
     }
 
 
 `
 
 export default class CornerPatternEffect extends Effect {
-    constructor({ 
-        frequency, 
-        amplitude, 
-        blendFunction = BlendFunction.DARKEN, 
-        color1 = 'red', 
+    constructor({
+        frequency,
+        amplitude,
+        blendFunction = BlendFunction.DARKEN,
+        color1 = 'red',
         color2 = 'yellow',
         gridSize,
-        dotRadius 
+        dotRadius
     }) {
 
-        
+
         super(
             'CornerPatternEffect',
             fragmentShader,
@@ -91,10 +88,13 @@ export default class CornerPatternEffect extends Effect {
         )
 
         window.addEventListener('resize', () => {
-            this.uniforms.get('uResolution').value = {
-                x: window.innerWidth * Math.min(window.devicePixelRatio, 2),
-                y: window.innerHeight * Math.min(window.devicePixelRatio, 2)
-            }
+           
+            this.uniforms
+                .get("uResolution")
+                .value
+                .set(window.innerWidth * Math.min(window.devicePixelRatio, 2),
+                    window.innerHeight * Math.min(window.devicePixelRatio, 2)
+                );
         })
 
     }

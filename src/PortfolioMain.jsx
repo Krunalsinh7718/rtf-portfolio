@@ -2,10 +2,12 @@ import { Canvas } from "@react-three/fiber";
 import Experience from "./Experience.jsx";
 import { Leva } from "leva";
 import * as THREE from 'three';
+import { Perf } from "r3f-perf";
 
 export default function PortfolioMain() {
     return <>
-        <Leva  />
+        
+        <Leva collapsed />
         <Canvas
             className="r3f"
             gl={{
@@ -18,6 +20,7 @@ export default function PortfolioMain() {
                 position: [-3, 1.5, 4]
 
             }}>
+                <Perf position='top-left'/>
             <Experience />
         </Canvas>
     </>;
