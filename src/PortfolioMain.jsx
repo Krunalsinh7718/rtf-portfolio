@@ -20,7 +20,7 @@ export default function PortfolioMain() {
                 position: [-3, 1.5, 4]
 
             }}>
-                <Perf position='top-left'/>
+                {/* <Perf position='top-left'/> */}
             <Experience />
         </Canvas>
     </>;
