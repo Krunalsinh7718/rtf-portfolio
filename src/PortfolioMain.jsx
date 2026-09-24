@@ -3,6 +3,8 @@ import Experience from "./Experience.jsx";
 import { Leva } from "leva";
 import * as THREE from 'three';
 import { Perf } from "r3f-perf";
+import { Suspense } from "react";
+import ModelLoader from "./ModelLoader.jsx";
 
 export default function PortfolioMain() {
     return <>
@@ -21,7 +23,10 @@ export default function PortfolioMain() {
 
             }}>
                 {/* <Perf position='top-left'/> */}
-            <Experience />
+                
+                <Suspense fallback={<ModelLoader />}>
+                    <Experience />
+                </Suspense>
         </Canvas>
     </>;
 }

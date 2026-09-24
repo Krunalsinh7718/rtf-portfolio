@@ -1,7 +1,8 @@
 import { Center, ContactShadows, Float, Html, PresentationControls, Text, useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
+import ModelLoader from "./ModelLoader";
 
 export default function Laptop1() {
 
@@ -30,22 +31,23 @@ export default function Laptop1() {
                             rotation={ [ - 0.1, Math.PI, 0 ] }
                             position={ [ 0, 0.55, - 1.15 ] }
                         />
-        
-                        <primitive
-                            object={ computer.scene }
-                            position-y={ - 1.2 }
-                            // rotation-x={ 0.13 }
-                        >
-                            <Html
-                                transform
-                                wrapperClass="htmlScreen"
-                                distanceFactor={ 1.17 }
-                                position={ [ 0, 1.56, - 1.4 ] }
-                                rotation-x={ - 0.256 }
+                        <Suspense fallback={<ModelLoader />}>
+                            <primitive
+                                object={ computer.scene }
+                                position-y={ - 1.2 }
+                                // rotation-x={ 0.13 }
                             >
-                                <iframe src="https://bruno-simon.com/html/" />
-                            </Html>
-                        </primitive>
+                                <Html
+                                    transform
+                                    wrapperClass="htmlScreen"
+                                    distanceFactor={ 1.17 }
+                                    position={ [ 0, 1.56, - 1.4 ] }
+                                    rotation-x={ - 0.256 }
+                                >
+                                    <iframe src="https://bruno-simon.com/html/" />
+                                </Html>
+                            </primitive>
+                        </Suspense>
         
                         <Text
                             font="/fonts/bangers-v20-latin-regular.woff"

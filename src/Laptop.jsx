@@ -1,8 +1,9 @@
 import { Center, ContactShadows, Float, Html, PresentationControls, Text, useAnimations, useGLTF } from "@react-three/drei";
 import { useControls } from "leva";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import * as THREE from 'three';
 import gsap from 'gsap';
+import ModelLoader from "./ModelLoader";
 
 export default function Laptop() {
 
@@ -103,30 +104,33 @@ export default function Laptop() {
             snap
         >
             <Float rotationIntensity={0.4}>
-                <primitive
-                    object={model.scene}
-                    scale={0.08}
-                    rotation-y={laptopRotationY}
-                    // rotation-x={-0.1}
-                    position-y={-0.5}
-                >
-                    <Html
-                        wrapperClass="html-frame"
-                        transform
-                        distanceFactor={distanceFactor}
-                        position={[positionX, positionY, positionZ]}
-                        rotation-x={rotationX}
-                        occlude
-                        style={{
-                            transitionDuration: '1s',
-                            opacity: frameOpacity
-                        }}
+                
+                
+                    <primitive
+                        object={model.scene}
+                        scale={0.08}
+                        rotation-y={laptopRotationY}
+                        // rotation-x={-0.1}
+                        position-y={-0.5}
                     >
-                        <iframe
-                            src="/html/purple_blue_portfolio.html"
-                        />
-                    </Html>
-                </primitive>
+                        <Html
+                            wrapperClass="html-frame"
+                            transform
+                            distanceFactor={distanceFactor}
+                            position={[positionX, positionY, positionZ]}
+                            rotation-x={rotationX}
+                            occlude
+                            style={{
+                                transitionDuration: '1s',
+                                opacity: frameOpacity
+                            }}
+                        >
+                            <iframe
+                                src="/html/purple_blue_portfolio.html"
+                            />
+                        </Html>
+                    </primitive>
+                
                 <rectAreaLight
                     width={2.5}
                     height={1.65}

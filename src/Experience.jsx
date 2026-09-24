@@ -12,6 +12,7 @@ import { BlendFunction, Effect } from "postprocessing";
 
 import Logos from "./Logos";
 import CornerPattern from "./CornerPattern";
+import ModelLoader from "./ModelLoader";
 
 
 export default function Experience() {
@@ -125,6 +126,7 @@ export default function Experience() {
                 />
             }
         </EffectComposer>
+        
     </>;
 }
 
